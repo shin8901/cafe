@@ -109,16 +109,15 @@ public class OrderService {
             totalCost += orderItem.getCount() * beverage.getCost();
         }
 
-        order.setTotalCost(totalCost);
-
         // 2. 매월 마지막 날이면 10% 할인
-        Calendar cal = Calendar.getInstance();
+/*        Calendar cal = Calendar.getInstance();
         int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE);
         int todayDate = cal.get(Calendar.DATE);
 
         if(lastDayOfMonth == todayDate) {
             totalCost = totalCost * 0.9;
-        }
+        }*/
+        order.setTotalCost(totalCost);
 
         double mileagePoint = 0;
         switch(payment) {

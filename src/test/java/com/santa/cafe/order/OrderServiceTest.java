@@ -24,6 +24,7 @@ import static org.mockito.Mockito.*;
 public class OrderServiceTest {
 
     public static final int CUSTOMER_ID = 24264;
+
     @InjectMocks
     private OrderService subject;
 
