@@ -175,7 +175,6 @@ public void addOrderItem(OrderItem orderItem) {
 
 
 
-
 # Reference
 https://wikidocs.net/590
 https://refactoring.guru/introduce-local-extension
