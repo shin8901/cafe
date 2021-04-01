@@ -31,21 +31,17 @@ public class OrderService {
     private final CustomerService customerService;
     private final BeverageRepository beverageRepository;
     private final OrderItemRepository orderItemRepository;
-    private final AlarmApiService alarmApiService;
 
     public OrderService(OrderRepository orderRepository,
                         MileageApiService mileageApiService,
                         CustomerService customerService,
                         BeverageRepository beverageRepository,
-                        OrderItemRepository orderItemRepository,
-                        AlarmApiService alarmApiService
-                        ) {
+                        OrderItemRepository orderItemRepository) {
         this.orderRepository = orderRepository;
         this.mileageApiService = mileageApiService;
         this.customerService = customerService;
         this.beverageRepository = beverageRepository;
         this.orderItemRepository = orderItemRepository;
-        this.alarmApiService = alarmApiService;
     }
 
     public Order getOrder(int orderId) {
