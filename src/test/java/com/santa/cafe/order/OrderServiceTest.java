@@ -43,7 +43,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void 마일리지로_결제하는경우_고객의마일리지가_TotalCost보다_크거나같으면_마일리지를_차감한다() {
+    public void 마일리지로_결제하는경우_고객의마일리지가_TotalCost보다_크거나같으면_마일리지API를_호출하여_마일리지를_차감한다() {
     }
 
     @Test
@@ -51,10 +51,10 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void 마일리지로_결제하는경우_마일리지를_적립하지_않는다() {
+    public void 마일리지로_결제하는경우_마일리지API를_호출하여_마일리지를_적립하지_않는다() {
     }
 
     @Test
-    public void 마일리지로_결제하지않는경우_마일리지를_적립한다() {
+    public void 마일리지로_결제하지않는경우_마일리지API를_호출하여_마일리지를_적립한다() {
     }
 }
