@@ -110,13 +110,7 @@ public class OrderService {
         }
 
         // 2. 매월 마지막 날이면 10% 할인
-/*        Calendar cal = Calendar.getInstance();
-        int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE);
-        int todayDate = cal.get(Calendar.DATE);
-
-        if(lastDayOfMonth == todayDate) {
-            totalCost = totalCost * 0.9;
-        }*/
+        totalCost = this.getDiscountedTotalCost(totalCost);
         order.setTotalCost(totalCost);
 
         double mileagePoint = 0;
@@ -157,6 +151,21 @@ public class OrderService {
         orderItemRepository.saveAll(orderItems);
 
         return order;
+    }
+
+    private double getDiscountedTotalCost(double totalCost) {
+        if(isLastDayOfMonth()) {
+            totalCost = totalCost * 0.9;
+        }
+        return totalCost;
+    }
+
+    protected boolean isLastDayOfMonth() {
+        Calendar cal = Calendar.getInstance();
+        int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE);
+        int todayDate = cal.get(Calendar.DATE);
+
+        return lastDayOfMonth == todayDate;
     }
 
     private void payWithCard() {
