@@ -23,12 +23,13 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class OrderServiceTest {
 
-    private final int CUSTOMER_ID = 12345;
-    private final int PAYMENT_CASH = 1;
-    private final int AMERICANO_ID = 1;
-    private final int NOT_EXIST_BEVERAGE_ID = 2;
+    private static final int CUSTOMER_ID = 12345;
+    private static final int PAYMENT_CASH = 1;
+    private static final int PAYMENT_CARD = 2;
+    private static final int AMERICANO_ID = 1;
+    private static final int NOT_EXIST_BEVERAGE_ID = 2;
 
-    private TestableOrderService subject;
+    TestableOrderService subject;
 
     @Mock
     private OrderRepository mockOrderRepository;
@@ -79,6 +80,7 @@ public class OrderServiceTest {
 
         Order result = subject.create(CUSTOMER_ID, Arrays.asList(orderItem, notValidOrderItem), PAYMENT_CASH);
 
+        //then
         assertThat(result.getTotalCost(), is(2000.0));
     }
 
@@ -102,10 +104,32 @@ public class OrderServiceTest {
 
     @Test
     public void 현금으로_결제시_TotalCost의_10퍼센트를_마일리지로_적립한다() {
+        //given
+
+        //when
+        Map<String, Object> orderItem = new HashMap<>();
+        orderItem.put("beverageId", AMERICANO_ID);
+        orderItem.put("count", 2);
+
+        Order result = subject.create(CUSTOMER_ID, Collections.singletonList(orderItem), PAYMENT_CASH);
+
+        //then
+        assertThat(result.getMileagePoint(), is(200.0));
     }
 
     @Test
     public void 카드로_결제시_TotalCost의_5퍼센트를_마일리지로_적립한다() {
+        //given
+
+        //when
+        Map<String, Object> orderItem = new HashMap<>();
+        orderItem.put("beverageId", AMERICANO_ID);
+        orderItem.put("count", 2);
+
+        Order result = subject.create(CUSTOMER_ID, Collections.singletonList(orderItem), PAYMENT_CARD);
+
+        //then
+        assertThat(result.getMileagePoint(), is(100.0));
     }
 
     @Test
